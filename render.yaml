@@ -8,6 +8,3 @@ services:
       python manage.py collectstatic --no-input
       python manage.py migrate
     startCommand: gunicorn config.wsgi:application
-    envVars:
-      - key: DJANGO_SECRET_KEY
-        generateValue: true
