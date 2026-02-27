@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("منصة التوجيه الطلابي جاهزة للنشر")
+    return render(request, "home.html")
 
 urlpatterns = [
-    path('', home),
-    path('admin/', admin.site.urls),
+    path("", home),
+    path("admin/", admin.site.urls),
 ]
