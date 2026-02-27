@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ClassRoom, Student, Case
+from .models import ClassRoom, Student, Referral, ReferralStudent, Intervention
 
 
 @admin.register(ClassRoom)
@@ -10,13 +10,34 @@ class ClassRoomAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "national_id", "classroom", "phone")
+    list_display = ("id", "name", "classroom", "phone")
     list_filter = ("classroom",)
-    search_fields = ("name", "national_id", "phone")
+    search_fields = ("name", "phone", "classroom__name")
 
 
-@admin.register(Case)
-class CaseAdmin(admin.ModelAdmin):
-    list_display = ("id", "student", "case_type", "date")
-    list_filter = ("case_type", "date")
-    search_fields = ("student__name", "student__national_id", "case_type")
+class ReferralStudentInline(admin.TabularInline):
+    model = ReferralStudent
+    extra = 0
+    autocomplete_fields = ("student",)
+
+
+@admin.register(Referral)
+class ReferralAdmin(admin.ModelAdmin):
+    list_display = ("id", "reason", "created_by", "assigned_to", "created_at")
+    list_filter = ("reason", "created_at")
+    search_fields = ("notes", "created_by__username", "assigned_to__username")
+    inlines = [ReferralStudentInline]
+
+
+@admin.register(ReferralStudent)
+class ReferralStudentAdmin(admin.ModelAdmin):
+    list_display = ("id", "referral", "student", "is_closed", "closed_at")
+    list_filter = ("is_closed",)
+    search_fields = ("student__name",)
+
+
+@admin.register(Intervention)
+class InterventionAdmin(admin.ModelAdmin):
+    list_display = ("id", "referral_student", "action", "created_by", "created_at")
+    list_filter = ("action", "created_at")
+    search_fields = ("referral_student__student__name", "notes", "created_by__username")
