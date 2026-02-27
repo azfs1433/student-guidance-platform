@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}الرئيسية | منصة التوجيه الطلابي{% endblock %}
+
+{% block content %}
+<div class="row g-4 align-items-center">
+  <div class="col-lg-7">
+    <h1 class="fw-bold mb-3">منصة التوجيه الطلابي</h1>
+    <p class="text-muted fs-5">
+      منصة مخصصة لـ <b>الموجّه الطلابي</b> و<b>المعلّم</b> و<b>الوكيل</b> و<b>الإداري</b> لإدارة الحالات، المتابعة،
+      السجلات، والخطط بكل سهولة.
+    </p>
+
+    <div class="d-flex gap-2 mt-4">
+      <a class="btn btn-primary" href="/admin/">الدخول للإدارة</a>
+      <a class="btn btn-outline-secondary" href="/admin/login/?next=/admin/">تسجيل الدخول</a>
+    </div>
+
+    <div class="mt-4 small text-muted">
+      ملاحظة: لاحقًا بنضيف لوحة تحكم خاصة لكل دور (موجه/معلم/وكيل/إداري).
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-4">
+        <h5 class="fw-bold mb-3">ماذا ستقدم المنصة؟</h5>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2">✅ إدارة الطلاب والحالات</li>
+          <li class="mb-2">✅ سجل المتابعات والاجتماعات</li>
+          <li class="mb-2">✅ خطط علاجية وإحالات</li>
+          <li class="mb-2">✅ تقارير جاهزة للطباعة</li>
+          <li class="mb-2">✅ صلاحيات حسب الدور الوظيفي</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
