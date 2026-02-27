@@ -34,3 +34,4 @@ class InterventionAdmin(admin.ModelAdmin):
     list_filter = ("action", "created_at")
     search_fields = ("created_by__username", "referral_student__student__name")
     
+
