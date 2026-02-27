@@ -47,11 +47,20 @@ TEMPLATES = [{
 
 WSGI_APPLICATION='config.wsgi.application'
 
-DATABASES={
-'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR/'db.sqlite3'}")
+import os
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.getenv("SQLITE_PATH", "/var/data/db.sqlite3"),
+    }
 }
 
 STATIC_URL='static/'
 STATIC_ROOT=BASE_DIR/'staticfiles'
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/dashboard/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'
