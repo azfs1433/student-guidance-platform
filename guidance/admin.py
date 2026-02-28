@@ -21,9 +21,15 @@ class StudentResource(resources.ModelResource):
         report_skipped = True
 
 
+from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+from .models import ClassRoom, Student, Referral, ReferralStudent, Intervention
+
+
 @admin.register(Student)
 class StudentAdmin(ImportExportModelAdmin):
-    resource_class = StudentResource
     list_display = ("id", "name", "national_id", "classroom", "phone")
     list_filter = ("classroom",)
     search_fields = ("name", "national_id", "phone")
