@@ -9,10 +9,10 @@ class ClassRoomAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "national_id", "classroom", "phone")
+    list_display = ("id", "name", "classroom", "phone")
     list_filter = ("classroom",)
-    search_fields = ("name", "national_id", "phone")
-
+    search_fields = ("name", "phone")
+    
 
 @admin.register(Referral)
 class ReferralAdmin(admin.ModelAdmin):
